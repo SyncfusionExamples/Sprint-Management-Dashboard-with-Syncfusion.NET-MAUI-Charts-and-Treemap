@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:treemap="clr-namespace:Syncfusion.Maui.TreeMap;assembly=Syncfusion.Maui.TreeMap"
+             x:Class="SprintManagementDashboardSample.Views.MobilePage"
+             Shell.NavBarIsVisible="False"
+             Background="AliceBlue">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="12" Spacing="12">
+            <Border Padding="12" Background="White" Stroke="White" StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <HorizontalStackLayout>
+                    <Label Text="Sprint Management Dashboard" FontAttributes="Bold" FontSize="18" TextColor="#111827" />
+                </HorizontalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="140,170" ColumnSpacing="12" RowSpacing="12">
+                <Border x:Name="SprintCard" Grid.Row="0" Grid.Column="0" Padding="12" Background="White" Stroke="White" StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="6" VerticalOptions="Center">
+                        <Label Text="Sprints" HorizontalTextAlignment="Center"/>
+                        <Picker ItemsSource="{Binding Sprints}"
+                                SelectedItem="{Binding SelectedSprint}"
+                                HorizontalTextAlignment="Center"
+                                WidthRequest="160" HeightRequest="44" FontSize="12" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border x:Name="HoursCard" Grid.Row="0" Grid.Column="1" Padding="12" Background="White" Stroke="White" StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="6" VerticalOptions="Center">
+                        <Label Text="Total Worked Hours" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding TotalWorkedHours, StringFormat='{}{0} hrs'}" 
+                               FontSize="18" FontAttributes="Bold" TextColor="Grey" 
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border x:Name="TasksCard" Grid.Row="1" Grid.Column="0" Padding="12" Background="White" Stroke="White" StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Tasks" FontSize="16" HorizontalTextAlignment="Center" Margin="0,0,0,12"/>
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="{Binding TasksCompleted}" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="Grey" Margin="0,0,0,6"/>
+                                <Label Text="Completed" HorizontalTextAlignment="Center" FontSize="12"/>
+                            </VerticalStackLayout>
+                            <BoxView Grid.Column="1" WidthRequest="1.5" BackgroundColor="#E0E0E0"/>
+                            <VerticalStackLayout Grid.Column="2">
+                                <Label Text="{Binding TasksAssigned}" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="Grey" Margin="0,0,0,6"/>
+                                <Label Text="Assigned" HorizontalTextAlignment="Center" FontSize="12"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border x:Name="StoryPointsCard" Grid.Row="1" Grid.Column="1" Padding="12" Background="White" Stroke="White" StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="Story Points" FontSize="16" HorizontalTextAlignment="Center" Margin="0,0,0,12"/>
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="{Binding StoryPointsCompleted}" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="Grey" Margin="0,0,0,6"/>
+                                <Label Text="Completed" HorizontalTextAlignment="Center" FontSize="12"/>
+                            </VerticalStackLayout>
+                            <BoxView Grid.Column="1" WidthRequest="1.5" BackgroundColor="#E0E0E0"/>
+                            <VerticalStackLayout Grid.Column="2">
+                                <Label Text="{Binding StoryPointsPlanned}" HorizontalTextAlignment="Center" FontSize="18" FontAttributes="Bold" TextColor="Grey" Margin="0,0,0,6"/>
+                                <Label Text="Planned" HorizontalTextAlignment="Center" FontSize="12"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
+                <HorizontalStackLayout Spacing="12">
+                    <Border Padding="12" Background="White" Stroke="White" StrokeThickness="1" WidthRequest="370">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label Text="Tasks by Status" FontAttributes="Bold"/>
+                            <chart:SfCircularChart HeightRequest="305">
+                                <chart:SfCircularChart.Legend>
+                                    <chart:ChartLegend IsVisible="True" Placement="Bottom" ToggleSeriesVisibility="True">
+                                        <chart:ChartLegend.ItemsLayout>
+                                            <FlexLayout WidthRequest="300" HeightRequest="100" Direction="Column" Wrap="Wrap" AlignItems="Center" AlignContent="Center" VerticalOptions="Start" HorizontalOptions="Start"/>
+                                        </chart:ChartLegend.ItemsLayout>
+                                    </chart:ChartLegend>
+                                </chart:SfCircularChart.Legend>
+                                <chart:SfCircularChart.Resources>
+                                    <DataTemplate x:Key="labelTemplate">
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label TextColor="Black" FontSize="10">
+                                                <Label.Text>
+                                                    <MultiBinding StringFormat="{}{0} ({1})">
+                                                        <Binding Path="Item.Status"/>
+                                                        <Binding Path="Item.Count"/>
+                                                    </MultiBinding>
+                                                </Label.Text>
+                                            </Label>
+                                        </HorizontalStackLayout>
+                                    </DataTemplate>
+                                </chart:SfCircularChart.Resources>
+                                <chart:PieSeries ItemsSource="{Binding TaskStatus}"
+                                                 XBindingPath="Status"
+                                                 YBindingPath="Count"
+                                                 PaletteBrushes="{Binding CustomBrushes}"
+                                                 Radius="0.8"
+                                                 IsVisibleOnLegend="True"
+                                                 ShowDataLabels="True"
+                                                 LegendIcon = "Diamond"
+                                                 EnableTooltip="True"
+                                                 LabelTemplate="{StaticResource labelTemplate}">
+                                    <chart:PieSeries.DataLabelSettings>
+                                        <chart:CircularDataLabelSettings LabelPosition="Outside" />
+                                    </chart:PieSeries.DataLabelSettings>
+                                </chart:PieSeries>
+                            </chart:SfCircularChart>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="12" Background="White" Stroke="White" StrokeThickness="1" WidthRequest="370">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label Text="Task Type Breakdown" FontAttributes="Bold"/>
+                            <chart:SfCartesianChart HeightRequest="290">
+                                <chart:SfCartesianChart.Legend>
+                                    <chart:ChartLegend ToggleSeriesVisibility="True"/>
+                                </chart:SfCartesianChart.Legend>
+                                <chart:SfCartesianChart.XAxes>
+                                    <chart:CategoryAxis TickPosition="Inside" ShowMajorGridLines="False"/>
+                                </chart:SfCartesianChart.XAxes>
+                                <chart:SfCartesianChart.YAxes>
+                                    <chart:NumericalAxis TickPosition="Inside"/>
+                                </chart:SfCartesianChart.YAxes>
+                                <chart:ColumnSeries ItemsSource="{Binding TaskTypes}" XBindingPath="Type" LegendIcon="SeriesType" EnableTooltip="True" Fill="#87d0f5" YBindingPath="Planned" Label="Planned Tasks" Spacing="0.2" ShowDataLabels="True"/>
+                                <chart:ColumnSeries ItemsSource="{Binding TaskTypes}" XBindingPath="Type" EnableTooltip="True" Fill="#3cad67" LegendIcon="SeriesType" YBindingPath="Completed" Label="Completed Tasks" Spacing="0.2" ShowDataLabels="True"/>
+                            </chart:SfCartesianChart>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="12" Background="White" Stroke="White" StrokeThickness="1" WidthRequest="370">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label Text="Scope Changes" FontAttributes="Bold"/>
+                            <chart:SfCartesianChart HeightRequest="290">
+                                <chart:SfCartesianChart.Legend>
+                                    <chart:ChartLegend ToggleSeriesVisibility="True"/>
+                                </chart:SfCartesianChart.Legend>
+                                <chart:SfCartesianChart.XAxes>
+                                    <chart:CategoryAxis TickPosition="Inside" ShowMajorGridLines="False"/>
+                                </chart:SfCartesianChart.XAxes>
+                                <chart:SfCartesianChart.YAxes>
+                                    <chart:NumericalAxis TickPosition="Inside"/>
+                                </chart:SfCartesianChart.YAxes>
+                                <chart:ColumnSeries ItemsSource="{Binding ScopeChanges}" EnableTooltip="True" LegendIcon="SeriesType" Fill="#87d0f5" XBindingPath="SprintName" YBindingPath="Planned" Label="Planned"/>
+                                <chart:ColumnSeries ItemsSource="{Binding ScopeChanges}" EnableTooltip="True" LegendIcon="SeriesType" Fill="#f1c40f" XBindingPath="SprintName" YBindingPath="Added" Label="Added"/>
+                                <chart:ColumnSeries ItemsSource="{Binding ScopeChanges}" EnableTooltip="True" LegendIcon="SeriesType" Fill="#855ec2" XBindingPath="SprintName" YBindingPath="Removed" Label="Removed"/>
+                            </chart:SfCartesianChart>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Padding="12" Background="White" Stroke="White" StrokeThickness="1" WidthRequest="370">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12"/>
+                        </Border.StrokeShape>
+                        <VerticalStackLayout>
+                            <Label Text="Incomplete Tasks by Project and Priority" Padding="0,0,0,8" FontAttributes="Bold"/>
+                            <treemap:SfTreeMap ShowToolTip="True" HeightRequest="220" DataSource="{Binding IncompleteTasks}" PrimaryValuePath="Count">
+                                <treemap:SfTreeMap.LeafItemBrushSettings>
+                                    <treemap:TreeMapPaletteBrushSettings>
+                                        <treemap:TreeMapPaletteBrushSettings.Brushes>
+                                            <SolidColorBrush>#4caf4f</SolidColorBrush>
+                                            <SolidColorBrush>#ffa600</SolidColorBrush>
+                                            <SolidColorBrush>#ed5f4f</SolidColorBrush>
+                                        </treemap:TreeMapPaletteBrushSettings.Brushes>
+                                    </treemap:TreeMapPaletteBrushSettings>
+                                </treemap:SfTreeMap.LeafItemBrushSettings>
+                                <treemap:SfTreeMap.LeafItemSettings>
+                                    <treemap:TreeMapLeafItemSettings LabelPath="Label" />
+                                </treemap:SfTreeMap.LeafItemSettings>
+                            </treemap:SfTreeMap>
+                        </VerticalStackLayout>
+                    </Border>
+                </HorizontalStackLayout>
+            </ScrollView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
