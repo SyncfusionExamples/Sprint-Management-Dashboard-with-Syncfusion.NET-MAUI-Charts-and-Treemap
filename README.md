@@ -48,7 +48,7 @@ The dashboard adapts naturally to agile workflows, offering clarity for sprint p
 
 ## Output
 
-![SprintManagementDashboardSampleImage]()
+![SprintManagementDashboardSampleImage](https://github.com/user-attachments/assets/fac6564b-d6ec-4580-a6c7-dc4c51e239d8)
 
 ## Troubleshooting
 
