@@ -1,7 +1,8 @@
+using SprintManagementDashboardSample.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using SprintManagementDashboardSample.Models;
+using System.Windows.Input;
 
 namespace SprintManagementDashboardSample.ViewModels
 {
@@ -25,7 +26,8 @@ namespace SprintManagementDashboardSample.ViewModels
         /// <summary>
         /// Available sprint names shown in the sprint selector.
         /// </summary>
-        public ObservableCollection<string> Sprints { get; } = new(["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5"]);
+        //public ObservableCollection<string> Sprints { get; } = new(["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5"]);
+        public ObservableCollection<string> Sprints { get; } = new(["All", "Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5"]);
 
         private string _selectedSprint = "Sprint 1";
 
@@ -291,25 +293,64 @@ namespace SprintManagementDashboardSample.ViewModels
         /// </summary>
         void UpdateForSprint()
         {
-            var s = _data[SelectedSprint];
+            IEnumerable<Sprint> sprints = SelectedSprint == "All" ? _data.Values.AsEnumerable() : new[] { _data[SelectedSprint] };
 
-            TotalWorkedHours = s.TotalWorkedHours;
-            TasksCompleted = s.TasksCompleted;
-            TasksAssigned = s.TasksAssigned;
-            StoryPointsCompleted = s.StoryPointsCompleted;
-            StoryPointsPlanned = s.StoryPointsPlanned;
+            TotalWorkedHours = sprints.Sum(s => s.TotalWorkedHours);
+            TasksCompleted = sprints.Sum(s => s.TasksCompleted);
+            TasksAssigned = sprints.Sum(s => s.TasksAssigned);
+            StoryPointsCompleted = sprints.Sum(s => s.StoryPointsCompleted);
+            StoryPointsPlanned = sprints.Sum(s => s.StoryPointsPlanned);
 
             TaskStatus.Clear();
-            foreach (var t in s.TaskStatus)
-                TaskStatus.Add(new TaskStatusSlice { Status = t.Status, Count = t.Count });
+            foreach (var g in sprints
+                .SelectMany(s => s.TaskStatus)
+                .GroupBy(t => t.Status))
+                TaskStatus.Add(new TaskStatusSlice { Status = g.Key, Count = g.Sum(x => x.Count) });
 
             TaskTypes.Clear();
-            foreach (var t in s.TaskTypes)
-                TaskTypes.Add(new TaskTypeBreakdown { Type = t.Type, Planned = t.Planned, Completed = t.Completed });
+            foreach (var g in sprints
+                .SelectMany(s => s.TaskTypes))
+                TaskTypes.Add(new TaskTypeBreakdown { Type = g.Type, Planned = g.Planned, Completed = g.Completed });
+
+            if (SelectedSprint == "All")
+            {
+                var agg = TaskTypes
+                    .GroupBy(t => t.Type)
+                    .Select(g => new TaskTypeBreakdown { Type = g.Key, Planned = g.Sum(x => x.Planned), Completed = g.Sum(x => x.Completed) })
+                    .ToList();
+                TaskTypes.Clear();
+                foreach (var it in agg) TaskTypes.Add(it);
+            }
 
             IncompleteTasks.Clear();
-            foreach (var t in s.IncompleteTasks)
-                IncompleteTasks.Add(t);
+
+            if (SelectedSprint == "All")
+            {
+                var topAll = sprints
+                    .SelectMany(s => s.IncompleteTasks)
+                    .GroupBy(n => new { n.Project, n.Priority })
+                    .Select(g => new IncompleteTaskNode
+                    {
+                        Project = g.Key.Project,
+                        Priority = g.Key.Priority,
+                        Count = g.Sum(x => x.Count)
+                    })
+                    .OrderByDescending(n => n.Count)
+                    .Take(14);
+
+                foreach (var n in topAll)
+                    IncompleteTasks.Add(n);
+            }
+            else
+            {
+                var single = sprints
+                    .SelectMany(s => s.IncompleteTasks)
+                    .OrderByDescending(n => n.Count)
+                    .Take(10);
+
+                foreach (var n in single)
+                    IncompleteTasks.Add(n);
+            }
         }
     }
 }

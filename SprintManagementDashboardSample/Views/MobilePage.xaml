@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
              xmlns:treemap="clr-namespace:Syncfusion.Maui.TreeMap;assembly=Syncfusion.Maui.TreeMap"
+             xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              x:Class="SprintManagementDashboardSample.Views.MobilePage"
              Shell.NavBarIsVisible="False"
              Background="AliceBlue">
@@ -25,10 +26,14 @@
                     </Border.StrokeShape>
                     <VerticalStackLayout Spacing="6" VerticalOptions="Center">
                         <Label Text="Sprints" HorizontalTextAlignment="Center"/>
-                        <Picker ItemsSource="{Binding Sprints}"
-                                SelectedItem="{Binding SelectedSprint}"
-                                HorizontalTextAlignment="Center"
-                                WidthRequest="160" HeightRequest="44" FontSize="12" />
+                        <inputs:SfComboBox
+                            ItemsSource="{Binding Sprints}"
+                            SelectedItem="{Binding SelectedSprint}"
+                            IsClearButtonVisible="False"
+                            WidthRequest="150"
+                            HeightRequest="40"
+                            FontSize="12"
+                            Placeholder="Select sprint"/>
                     </VerticalStackLayout>
                 </Border>
 
