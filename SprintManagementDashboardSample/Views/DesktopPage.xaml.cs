@@ -1,4 +1,4 @@
-using SprintManagementDashboardSample.ViewModels;
+﻿using SprintManagementDashboardSample.ViewModels;
 
 namespace SprintManagementDashboardSample.Views;
 

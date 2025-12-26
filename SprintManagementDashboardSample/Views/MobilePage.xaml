@@ -197,7 +197,7 @@
                             <RoundRectangle CornerRadius="12"/>
                         </Border.StrokeShape>
                         <VerticalStackLayout>
-                            <Label Text="Scope Changes" TextColor="White" FontAttributes="Bold"/>
+                            <Label Text="Scope Changes (Full Sprint Cycle)" TextColor="White" FontAttributes="Bold"/>
                             <chart:SfCartesianChart HeightRequest="290">
                                 <chart:SfCartesianChart.Legend>
                                     <chart:ChartLegend ToggleSeriesVisibility="True">

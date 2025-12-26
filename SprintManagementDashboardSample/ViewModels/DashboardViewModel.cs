@@ -29,7 +29,7 @@ namespace SprintManagementDashboardSample.ViewModels
         //public ObservableCollection<string> Sprints { get; } = new(["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5"]);
         public ObservableCollection<string> Sprints { get; } = new(["All", "Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5"]);
 
-        private string _selectedSprint = "Sprint 1";
+        private string _selectedSprint = "All";
 
         /// <summary>
         /// Currently selected sprint. Changing this reloads all dashboard metrics and series.
@@ -222,7 +222,7 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(76.0),
                 ClampStoryPoints(80.0),
                 (closed: 15, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
-                (bugP: 6, bugC: 5, storyP: 7, storyC: 7, blogP: 3, blogC: 2, kbP: 4, kbC: 3, ugP: 3, ugC: 2),
+                (bugP: 6, bugC: 6, storyP: 8, storyC: 7, blogP: 4, blogC: 2, kbP: 4, kbC: 4, ugP: 3, ugC: 3),
                 (aH: 3, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
             );
 
@@ -234,7 +234,7 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(78.0),
                 ClampStoryPoints(80.0),
                 (closed: 16, inProg: 4, open: 1, onHold: 1, review: 2, validated: 0),
-                (9, 7, 9, 9, 3, 2, 2, 2, 2, 2),
+                (9, 8, 9, 9, 3, 3, 2, 2, 2, 2),
                 (aH: 2, aM: 3, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
             );
 
@@ -246,7 +246,7 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(77.0),
                 ClampStoryPoints(80.0),
                 (closed: 15, inProg: 4, open: 1, onHold: 1, review: 1, validated: 1),
-                (bugP: 6, bugC: 5, storyP: 7, storyC: 7, blogP: 4, blogC: 3, kbP: 4, kbC: 3, ugP: 3, ugC: 2),
+                (bugP: 6, bugC: 6, storyP: 7, storyC: 7, blogP: 4, blogC: 4, kbP: 4, kbC: 4, ugP: 3, ugC: 2),
                 (aH: 2, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
             );
 
@@ -258,7 +258,7 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(75.0),
                 ClampStoryPoints(78.0),
                 (closed: 14, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
-                (7, 6, 7, 7, 3, 2, 3, 2, 2, 2),
+                (7, 7, 7, 7, 3, 3, 3, 2, 2, 2),
                 (aH: 2, aM: 2, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
             );
 
@@ -270,7 +270,7 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(75.0),
                 ClampStoryPoints(77.0),
                 (closed: 13, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
-                (7, 5, 7, 7, 3, 2, 2, 2, 2, 2),
+                (7, 6, 7, 7, 3, 3, 2, 2, 2, 2),
                 (aH: 2, aM: 1, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
             );
         }
