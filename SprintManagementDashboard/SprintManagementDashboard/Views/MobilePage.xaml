@@ -41,10 +41,16 @@
                             IsClearButtonVisible="False"
                             WidthRequest="150"
                             HeightRequest="40"
-                            TextColor="White"
-                            Background="#276098"
-                            BackgroundColor="#276098"
                             FontSize="12"
+                            TextColor="White"
+                            Stroke="White"
+                            DropDownStroke="Transparent"
+                            DropDownStrokeThickness="0"
+                            Background="#164f87"
+                            BackgroundColor="#276098"
+                            DropDownBackground="#276098"
+                            DropDownIconColor="#276098"
+                            ShowBorder="False"
                             Placeholder="Select sprint"/>
                     </VerticalStackLayout>
                 </Border>
