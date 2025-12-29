@@ -141,14 +141,14 @@ namespace SprintManagementDashboardSample
         /// </summary>
         /// <param name="value">Input task count.</param>
         /// <returns>Value clamped to the inclusive range [20, 25].</returns>
-        private static int ClampTasks(int value) => Math.Min(25, Math.Max(20, value));
+        private static int ClampTasks(int value) => Math.Min(25, Math.Max(10, value));
 
         /// <summary>
         /// Clamps story points to a reasonable demo range.
         /// </summary>
         /// <param name="value">Input story points.</param>
         /// <returns>Value clamped to the inclusive range [75.0, 80.0].</returns>
-        private static double ClampStoryPoints(double value) => Math.Min(80.0, Math.Max(75.0, value));
+        private static double ClampStoryPoints(double value) => Math.Min(80.0, Math.Max(65.0, value));
 
         /// <summary>
         /// Seeds the in-memory sprint dataset with deterministic sample values used by the dashboard.
@@ -211,60 +211,60 @@ namespace SprintManagementDashboardSample
             _data["Sprint 1"] = Build(
                 "Sprint 1",
                 CalculateWorkedHours(11, 0),
-                ClampTasks(22),
+                ClampTasks(15),
                 ClampTasks(25),
-                ClampStoryPoints(76.0),
-                ClampStoryPoints(80.0),
+                ClampStoryPoints(66.0),
+                ClampStoryPoints(70.0),
                 (closed: 15, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
-                (bugP: 6, bugC: 6, storyP: 8, storyC: 7, blogP: 4, blogC: 2, kbP: 4, kbC: 4, ugP: 3, ugC: 3),
+                (6, 4, 8, 4, 4, 2, 4, 3, 3, 2),
                 (aH: 3, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
-            );
-
-            _data["Sprint 4"] = Build(
-                "Sprint 4",
-                CalculateWorkedHours(11, 1),
-                ClampTasks(21),
-                ClampTasks(22),
-                ClampStoryPoints(75.0),
-                ClampStoryPoints(78.0),
-                (closed: 14, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
-                (7, 7, 7, 7, 3, 3, 3, 2, 2, 2),
-                (aH: 2, aM: 2, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
             );
 
             _data["Sprint 2"] = Build(
                 "Sprint 2",
-                CalculateWorkedHours(11, 0),
-                ClampTasks(24),
-                ClampTasks(25),
-                ClampStoryPoints(78.0),
-                ClampStoryPoints(80.0),
-                (closed: 16, inProg: 4, open: 1, onHold: 1, review: 2, validated: 0),
-                (9, 8, 9, 9, 3, 3, 2, 2, 2, 2),
-                (aH: 2, aM: 3, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1)
-            );
-
-            _data["Sprint 5"] = Build(
-                "Sprint 5",
                 CalculateWorkedHours(11, 1),
-                ClampTasks(20),
-                ClampTasks(21),
-                ClampStoryPoints(75.0),
-                ClampStoryPoints(77.0),
-                (closed: 13, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
-                (7, 6, 7, 7, 3, 3, 2, 2, 2, 2),
-                (aH: 2, aM: 1, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
+                ClampTasks(14),
+                ClampTasks(22),
+                ClampStoryPoints(65.0),
+                ClampStoryPoints(68.0),
+                (closed: 14, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
+                (7, 3, 7, 4, 3, 3, 3, 2, 2, 2),
+                (aH: 2, aM: 2, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
             );
 
             _data["Sprint 3"] = Build(
                 "Sprint 3",
                 CalculateWorkedHours(11, 0),
-                ClampTasks(23),
+                ClampTasks(16),
+                ClampTasks(25),
+                ClampStoryPoints(68.0),
+                ClampStoryPoints(70.0),
+                (closed: 16, inProg: 4, open: 1, onHold: 1, review: 2, validated: 0),
+                (9, 4, 9, 5, 3, 2, 2, 3, 2, 2),
+                (aH: 2, aM: 3, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1)
+            );
+
+            _data["Sprint 4"] = Build(
+                "Sprint 4",
+                CalculateWorkedHours(11, 1),
+                ClampTasks(13),
+                ClampTasks(21),
+                ClampStoryPoints(65.0),
+                ClampStoryPoints(67.0),
+                (closed: 13, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
+                (7, 2, 7, 4, 3, 2, 2, 2, 2, 3),
+                (aH: 2, aM: 1, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
+            );
+
+            _data["Sprint 5"] = Build(
+                "Sprint 5",
+                CalculateWorkedHours(11, 0),
+                ClampTasks(15),
                 ClampTasks(24),
-                ClampStoryPoints(77.0),
-                ClampStoryPoints(80.0),
+                ClampStoryPoints(67.0),
+                ClampStoryPoints(70.0),
                 (closed: 15, inProg: 4, open: 1, onHold: 1, review: 1, validated: 1),
-                (bugP: 6, bugC: 6, storyP: 7, storyC: 7, blogP: 4, blogC: 4, kbP: 4, kbC: 4, ugP: 3, ugC: 2),
+                (6, 3, 7, 5, 4, 2, 4, 3, 3, 2),
                 (aH: 2, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1)
             );
         }
@@ -275,11 +275,11 @@ namespace SprintManagementDashboardSample
         void LoadScopeChanges()
         {
             ScopeChanges.Clear();
-            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 1", Planned = 76, Added = 30, Removed = 26 });
-            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 2", Planned = 78, Added = 25, Removed = 23 });
-            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 3", Planned = 77, Added = 31, Removed = 30 });
-            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 4", Planned = 75, Added = 27, Removed = 24 });
-            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 5", Planned = 75, Added = 28, Removed = 26 });
+            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 1", Planned = 66, Added = 30, Removed = 26 });
+            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 2", Planned = 65, Added = 27, Removed = 24 });
+            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 3", Planned = 68, Added = 25, Removed = 23 });
+            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 4", Planned = 65, Added = 28, Removed = 26 });
+            ScopeChanges.Add(new ScopeChange { SprintName = "Sprint 5", Planned = 67, Added = 31, Removed = 28 });
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace SprintManagementDashboardSample
                 var single = sprints
                     .SelectMany(s => s.IncompleteTasks)
                     .OrderByDescending(n => n.Count)
-                    .Take(10);
+                    .Take(12);
 
                 foreach (var n in single)
                     IncompleteTasks.Add(n);

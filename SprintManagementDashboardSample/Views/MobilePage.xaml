@@ -5,7 +5,7 @@
              xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
              xmlns:treemap="clr-namespace:Syncfusion.Maui.TreeMap;assembly=Syncfusion.Maui.TreeMap"
              xmlns:inputs="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
-             x:Class="SprintManagementDashboardSample.Views.MobilePage"
+             x:Class="SprintManagementDashboardSample.MobilePage"
              Shell.NavBarIsVisible="False"
              Background="#164f87">
 
@@ -191,8 +191,8 @@
                                         </chart:NumericalAxis.LabelStyle>
                                     </chart:NumericalAxis>
                                 </chart:SfCartesianChart.YAxes>
-                                <chart:ColumnSeries ItemsSource="{Binding TaskTypes}" XBindingPath="Type" LegendIcon="SeriesType" EnableTooltip="True" Fill="#87d0f5" YBindingPath="Planned" Label="Planned Tasks" Spacing="0.2" ShowDataLabels="True"/>
-                                <chart:ColumnSeries ItemsSource="{Binding TaskTypes}" XBindingPath="Type" EnableTooltip="True" Fill="#3cad67" LegendIcon="SeriesType" YBindingPath="Completed" Label="Completed Tasks" Spacing="0.2" ShowDataLabels="True"/>
+                                <chart:ColumnSeries ItemsSource="{Binding TaskTypes}" XBindingPath="Type" LegendIcon="SeriesType" EnableTooltip="True" Fill="#87d0f5" YBindingPath="Planned" Label="Planned Tasks" Spacing="0.2"/>
+                                <chart:ColumnSeries ItemsSource="{Binding TaskTypes}" XBindingPath="Type" EnableTooltip="True" Fill="#3cad67" LegendIcon="SeriesType" YBindingPath="Completed" Label="Completed Tasks" Spacing="0.2"/>
                             </chart:SfCartesianChart>
                         </VerticalStackLayout>
                     </Border>
