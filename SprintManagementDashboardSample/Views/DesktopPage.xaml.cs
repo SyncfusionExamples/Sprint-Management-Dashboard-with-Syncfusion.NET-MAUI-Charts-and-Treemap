@@ -1,18 +1,10 @@
-﻿using SprintManagementDashboardSample.ViewModels;
-
-namespace SprintManagementDashboardSample.Views;
+﻿namespace SprintManagementDashboardSample;
 
 public partial class DesktopPage : ContentPage
 {
-
-    public DesktopPage() : this(Resolve<DashboardViewModel>())
-    {
-    }
-
-	public DesktopPage(DashboardViewModel vm)
+	public DesktopPage()
 	{
 		InitializeComponent();
-        BindingContext = vm;
     }
 
     private static T Resolve<T>() where T : class, new()

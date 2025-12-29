@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
-
-namespace SprintManagementDashboardSample.Models;
+       
+namespace SprintManagementDashboardSample;
 
 /// <summary>
 /// Represents a scrum sprint with overall metrics and detailed datasets consumed by the dashboard.

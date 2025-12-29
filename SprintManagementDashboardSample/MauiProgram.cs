@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using SprintManagementDashboardSample.ViewModels;
 using Syncfusion.Maui.Core.Hosting;
 using Syncfusion.Maui.Toolkit.Hosting;
 
@@ -24,7 +23,7 @@ namespace SprintManagementDashboardSample
             builder.Logging.AddDebug();
 #endif
 
-            builder.Services.AddSingleton<ViewModels.DashboardViewModel>();
+            builder.Services.AddSingleton<DashboardViewModel>();
             builder.Services.AddSingleton<MainPage>();
 
             return builder.Build();

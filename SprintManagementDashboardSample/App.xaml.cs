@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SprintManagementDashboardSample.Views;
-
-namespace SprintManagementDashboardSample
+﻿namespace SprintManagementDashboardSample
 {
     public partial class App : Application
     {

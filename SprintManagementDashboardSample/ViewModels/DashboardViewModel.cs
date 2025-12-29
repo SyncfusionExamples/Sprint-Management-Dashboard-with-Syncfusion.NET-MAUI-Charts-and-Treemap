@@ -1,10 +1,8 @@
-using SprintManagementDashboardSample.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
-namespace SprintManagementDashboardSample.ViewModels
+namespace SprintManagementDashboardSample
 {
     /// <summary>
     /// ViewModel that exposes sprint KPIs and chart datasets to the dashboard UI.
@@ -26,7 +24,6 @@ namespace SprintManagementDashboardSample.ViewModels
         /// <summary>
         /// Available sprint names shown in the sprint selector.
         /// </summary>
-        //public ObservableCollection<string> Sprints { get; } = new(["Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5"]);
         public ObservableCollection<string> Sprints { get; } = new(["All", "Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4", "Sprint 5"]);
 
         private string _selectedSprint = "All";
@@ -161,7 +158,7 @@ namespace SprintManagementDashboardSample.ViewModels
             Sprint Build(string name, int hours, int completed, int assigned, double spCompleted, double spPlanned,
                 (int closed, int inProg, int open, int onHold, int review, int validated) status,
                 (int bugP, int bugC, int storyP, int storyC, int blogP, int blogC, int kbP, int kbC, int ugP, int ugC) types,
-                (int aH, int aM, int aL, int bH, int bM, int bL, int cH, int cM, int cL, int dH, int dM, int dL, int eH, int eM, int eL) treemap)
+                (int aH, int aM, int aL, int bH, int bM, int bL, int cH, int cM, int cL, int dH, int dM, int dL) treemap)
             {
                 var s = new Sprint
                 {
@@ -206,9 +203,6 @@ namespace SprintManagementDashboardSample.ViewModels
                     new() { Project = "Project D", Priority = "High", Count = treemap.dH },
                     new() { Project = "Project D", Priority = "Medium", Count = treemap.dM },
                     new() { Project = "Project D", Priority = "Low", Count = treemap.dL },
-                    new() { Project = "Project E", Priority = "High", Count = treemap.eH },
-                    new() { Project = "Project E", Priority = "Medium", Count = treemap.eM },
-                    new() { Project = "Project E", Priority = "Low", Count = treemap.eL },
                 };
 
                 return s;
@@ -223,31 +217,7 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(80.0),
                 (closed: 15, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
                 (bugP: 6, bugC: 6, storyP: 8, storyC: 7, blogP: 4, blogC: 2, kbP: 4, kbC: 4, ugP: 3, ugC: 3),
-                (aH: 3, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
-            );
-
-            _data["Sprint 2"] = Build(
-                "Sprint 2",
-                CalculateWorkedHours(11, 0),
-                ClampTasks(24),
-                ClampTasks(25),
-                ClampStoryPoints(78.0),
-                ClampStoryPoints(80.0),
-                (closed: 16, inProg: 4, open: 1, onHold: 1, review: 2, validated: 0),
-                (9, 8, 9, 9, 3, 3, 2, 2, 2, 2),
-                (aH: 2, aM: 3, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
-            );
-
-            _data["Sprint 3"] = Build(
-                "Sprint 3",
-                CalculateWorkedHours(11, 0),
-                ClampTasks(23),
-                ClampTasks(24),
-                ClampStoryPoints(77.0),
-                ClampStoryPoints(80.0),
-                (closed: 15, inProg: 4, open: 1, onHold: 1, review: 1, validated: 1),
-                (bugP: 6, bugC: 6, storyP: 7, storyC: 7, blogP: 4, blogC: 4, kbP: 4, kbC: 4, ugP: 3, ugC: 2),
-                (aH: 2, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
+                (aH: 3, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
             );
 
             _data["Sprint 4"] = Build(
@@ -259,7 +229,19 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(78.0),
                 (closed: 14, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
                 (7, 7, 7, 7, 3, 3, 3, 2, 2, 2),
-                (aH: 2, aM: 2, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
+                (aH: 2, aM: 2, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
+            );
+
+            _data["Sprint 2"] = Build(
+                "Sprint 2",
+                CalculateWorkedHours(11, 0),
+                ClampTasks(24),
+                ClampTasks(25),
+                ClampStoryPoints(78.0),
+                ClampStoryPoints(80.0),
+                (closed: 16, inProg: 4, open: 1, onHold: 1, review: 2, validated: 0),
+                (9, 8, 9, 9, 3, 3, 2, 2, 2, 2),
+                (aH: 2, aM: 3, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1)
             );
 
             _data["Sprint 5"] = Build(
@@ -271,7 +253,19 @@ namespace SprintManagementDashboardSample.ViewModels
                 ClampStoryPoints(77.0),
                 (closed: 13, inProg: 3, open: 1, onHold: 1, review: 1, validated: 1),
                 (7, 6, 7, 7, 3, 3, 2, 2, 2, 2),
-                (aH: 2, aM: 1, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1, eH: 1, eM: 1, eL: 1)
+                (aH: 2, aM: 1, aL: 1, bH: 2, bM: 1, bL: 1, cH: 2, cM: 1, cL: 1, dH: 1, dM: 1, dL: 1)
+            );
+
+            _data["Sprint 3"] = Build(
+                "Sprint 3",
+                CalculateWorkedHours(11, 0),
+                ClampTasks(23),
+                ClampTasks(24),
+                ClampStoryPoints(77.0),
+                ClampStoryPoints(80.0),
+                (closed: 15, inProg: 4, open: 1, onHold: 1, review: 1, validated: 1),
+                (bugP: 6, bugC: 6, storyP: 7, storyC: 7, blogP: 4, blogC: 4, kbP: 4, kbC: 4, ugP: 3, ugC: 2),
+                (aH: 2, aM: 2, aL: 1, bH: 2, bM: 2, bL: 1, cH: 2, cM: 2, cL: 1, dH: 1, dM: 1, dL: 1)
             );
         }
 

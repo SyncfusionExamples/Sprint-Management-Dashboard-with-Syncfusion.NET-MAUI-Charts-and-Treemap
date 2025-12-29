@@ -1,17 +1,10 @@
-using SprintManagementDashboardSample.ViewModels;
-
-namespace SprintManagementDashboardSample.Views;
+namespace SprintManagementDashboardSample;
 
 public partial class MobilePage : ContentPage
 {
-    public MobilePage() : this(Resolve<DashboardViewModel>())
-    {
-    }
-
-    public MobilePage(DashboardViewModel vm)
+    public MobilePage()
     {
         InitializeComponent();
-        BindingContext = vm;
     }
 
     private static T Resolve<T>() where T : class, new()
