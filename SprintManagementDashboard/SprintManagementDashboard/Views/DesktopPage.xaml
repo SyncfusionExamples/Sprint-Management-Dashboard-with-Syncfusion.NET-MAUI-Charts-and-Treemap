@@ -54,7 +54,11 @@
                         DropDownBackground="#276098"
                         DropDownIconColor="#276098"
                         ShowBorder="False"
-                        Placeholder="Select sprint"/>
+                        Placeholder="Select sprint">
+                        <inputs:SfComboBox.SelectedDropDownItemTextStyle>
+                            <inputs:DropDownTextStyle TextColor="White"/>
+                        </inputs:SfComboBox.SelectedDropDownItemTextStyle>
+                    </inputs:SfComboBox>
                 </VerticalStackLayout>
             </Border>
 
