@@ -45,6 +45,7 @@
                             TextColor="White"
                             Stroke="White"
                             DropDownStroke="Transparent"
+                            DropDownItemTextColor="White"
                             DropDownStrokeThickness="0"
                             Background="#164f87"
                             BackgroundColor="#276098"
@@ -195,6 +196,12 @@
                                         <chart:NumericalAxis.LabelStyle>
                                             <chart:ChartAxisLabelStyle TextColor="White"/>
                                         </chart:NumericalAxis.LabelStyle>
+                                        <chart:NumericalAxis.MajorGridLineStyle>
+                                            <chart:ChartLineStyle 
+                                              StrokeDashArray="2,4"
+                                              Stroke="LightGray"
+                                              StrokeWidth="1.5"/>
+                                        </chart:NumericalAxis.MajorGridLineStyle>
                                     </chart:NumericalAxis>
                                 </chart:SfCartesianChart.YAxes>
                                 <chart:ColumnSeries ItemsSource="{Binding TaskTypes}" XBindingPath="Type" LegendIcon="SeriesType" EnableTooltip="True" Fill="#87d0f5" YBindingPath="Planned" Label="Planned Tasks" Spacing="0.2"/>
@@ -225,10 +232,16 @@
                                     </chart:CategoryAxis>
                                 </chart:SfCartesianChart.XAxes>
                                 <chart:SfCartesianChart.YAxes>
-                                    <chart:NumericalAxis TickPosition="Inside">
+                                    <chart:NumericalAxis Interval="10" TickPosition="Inside">
                                         <chart:NumericalAxis.LabelStyle>
                                             <chart:ChartAxisLabelStyle TextColor="White"/>
                                         </chart:NumericalAxis.LabelStyle>
+                                        <chart:NumericalAxis.MajorGridLineStyle>
+                                            <chart:ChartLineStyle 
+                                              StrokeDashArray="2,4"
+                                              Stroke="White"
+                                              StrokeWidth="1.5"/>
+                                        </chart:NumericalAxis.MajorGridLineStyle>
                                     </chart:NumericalAxis>
                                 </chart:SfCartesianChart.YAxes>
                                 <chart:ColumnSeries ItemsSource="{Binding ScopeChanges}" EnableTooltip="True" LegendIcon="SeriesType" Fill="#87d0f5" XBindingPath="SprintName" YBindingPath="Planned" Label="Planned"/>
