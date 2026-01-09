@@ -56,4 +56,4 @@ The dashboard adapts naturally to agile workflows, offering clarity for sprint p
 
 If you encounter a path too long exception when building this example project, close Visual Studio and rename the repository to a shorter name before rebuilding.
 
-For a step-by-step procedure, refer to the link.
+For a step-by-step procedure, refer to the [A Modern Sprint Management Dashboard Blog](https://www.syncfusion.com/blogs/post/sprint-management-dashboard-dotnet-maui).
